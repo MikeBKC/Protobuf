@@ -1,5 +1,5 @@
 .PHONY: all
-all:	add_person
+all: add_person list_person
 SRC = src
 BUILD = build
 person_protoc:
@@ -7,6 +7,9 @@ person_protoc:
 
 add_person:  person_protoc
 	g++ -o $(BUILD)/$@ $(BUILD)/add_person.cc $(BUILD)/add_person.pb.cc -lprotobuf -lpthread -std=c++11
+
+list_person: person_protoc
+	g++ -o $(BUILD)/$@ $(BUILD)/list_person.cc $(BUILD)/add_person.pb.cc -lprotobuf -lpthread -std=c++11
 	
 clean:
 	rm build/add_person -rf
