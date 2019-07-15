@@ -57,5 +57,6 @@ int main(int argc,char *argv[])
 
     List_Person(address);
 
+    google::protobuf::ShutdownProtobufLibrary();
     return 0;
 }

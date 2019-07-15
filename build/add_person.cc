@@ -29,7 +29,7 @@ void Add_Person(tutorial::Person *person)
         if(num.empty()){
             break;
         }
-        
+
         tutorial::Person::Phonenum *phonenum;
         phonenum = person->add_phone();
 
@@ -47,7 +47,7 @@ void Add_Person(tutorial::Person *person)
         }else{
             cout << "Enter error , using default" << endl;
         }
-        
+
     }
 }
 int main(int argc,char *argv[])
@@ -82,6 +82,6 @@ int main(int argc,char *argv[])
             return -1;
         }
     }
-
+    google::protobuf::ShutdownProtobufLibrary();
     return 0;
 }
