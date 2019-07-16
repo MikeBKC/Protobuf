@@ -1,5 +1,5 @@
 .PHONY: all
-all: add_person list_person to_string
+all: add_person list_person to_string map_test
 SRC = src
 BUILD = build
 person_protoc:
@@ -7,6 +7,9 @@ person_protoc:
 
 string_protoc:
 	protoc --proto_path=$(SRC)/ --cpp_out=$(BUILD)/ $(SRC)/to_string.proto
+
+map_protoc:
+	protoc --proto_path=$(SRC)/ --cpp_out=$(BUILD)/ $(SRC)/map.proto
 
 add_person:  person_protoc
 	g++ -o $(BUILD)/$@ $(BUILD)/add_person.cc $(BUILD)/add_person.pb.cc -lprotobuf -lpthread -std=c++11
@@ -16,6 +19,9 @@ list_person: person_protoc
 	
 to_string: string_protoc
 	g++ -o $(BUILD)/$@ $(BUILD)/to_string.cc $(BUILD)/to_string.pb.cc -lprotobuf -lpthread -std=c++11
+
+map_test: map_protoc
+	g++ -o $(BUILD)/$@ $(BUILD)/map.cc $(BUILD)/map.pb.cc -lprotobuf -lpthread -std=c++11
 
 clean:
 	rm build/add_person -rf

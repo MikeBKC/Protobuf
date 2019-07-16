@@ -2,6 +2,8 @@
 #include <string>
 #include <fstream>
 #include "add_person.pb.h"
+#include <google/protobuf/text_format.h>
+
 using namespace std;
 
 void List_Person(tutorial::Address address)
@@ -54,7 +56,11 @@ int main(int argc,char *argv[])
             return -1;
         }
     }
-
+#if 0
+    string strTest;
+    google::protobuf::TextFormat::PrintToString(address, &strTest);
+    cout << strTest << endl;
+#endif
     List_Person(address);
 
     google::protobuf::ShutdownProtobufLibrary();
